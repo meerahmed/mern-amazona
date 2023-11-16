@@ -33,3 +33,6 @@ main {
   width: 100%;
   max-width: 300px;
 }
+.product-info {
+  padding: 1rem;
+}
