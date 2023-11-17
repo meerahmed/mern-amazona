@@ -44,3 +44,7 @@ format on save, single quote, default formatter,bracketfaircolor
     2.  update fetch data
     3.  get state from useReducer
     4.  install use reducer logger for log the state of reducer
+10. Add bootstrapp UI Framework
+    1.  npm install react-bootstrap bootstrap
+    2.  update App.js
+    3.  install react-bootstarp-route for linkcontainer instead of link
