@@ -33,3 +33,13 @@ format on save, single quote, default formatter,bracketfaircolor
     10. create route for /api/products
     11. return products
     12. run npm start
+8.  Fetch Product form Backend
+    1.  Set Proxy in package.json
+    2.  npm install axios (axios-http.com)
+    3.  use state hook (https://react.dev/reference/react/useState)
+    4.  use effect hook
+    5.  use reducer hook
+9.  Manage state by Reducer Hook
+    1.  Define reducer
+    2.  update fetch data
+    3.  get state from useReducer
