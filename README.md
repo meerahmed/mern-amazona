@@ -43,3 +43,4 @@ format on save, single quote, default formatter,bracketfaircolor
     1.  Define reducer
     2.  update fetch data
     3.  get state from useReducer
+    4.  install use reducer logger for log the state of reducer
