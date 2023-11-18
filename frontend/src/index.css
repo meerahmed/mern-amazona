@@ -24,6 +24,11 @@ main {
   flex: 1;
   /* margin: 1rem; */
 }
+
+.btn-primary {
+  background-color: #f0c040;
+  color: #000000;
+}
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -39,4 +44,8 @@ main {
 }
 .product-info {
   padding: 1rem;
+}
+
+.rating span {
+  color: #ffc000;
 }

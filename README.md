@@ -1,12 +1,12 @@
 # MERN AMAZONA
 
-#Fast the vs code development
-#vs code extension for fast development
-1.prettier
-format on save, single quote, default formatter,bracketfaircolor
-2.esLint
-3.JavaScript (ES6) snippets
-4.ES7 React/Redux/React-Native/JS
+# vs code extension for fast development
+
+    1.prettier
+    format on save, single quote, default formatter,bracketfaircolor
+    2.esLint
+    3.JavaScript (ES6) snippets
+    4.ES7 React/Redux/React-Native/JS
 
 # LESSION
 
@@ -48,3 +48,10 @@ format on save, single quote, default formatter,bracketfaircolor
     1.  npm install react-bootstrap bootstrap
     2.  update App.js
     3.  install react-bootstarp-route for linkcontainer instead of link
+11. Create Product and Rating Component
+    1.  Create product component
+    2.  Create Rating Componet
+    3.  Use Rating component in Product Component
+12. Create Product Details Screen
+    1.  Fetch product from backend with ths slug
+    2.  Create 3 column for image , info, action
