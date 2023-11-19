@@ -56,3 +56,8 @@
     1.  Fetch product from backend with ths slug
     2.  Create 3 column for image , info, action
     3.  using react-helmet-async for dynamic browser title
+13. Create Loading Spinner and Message Show
+    1.  Create Loading Component
+    2.  Use spinner Component
+    3.  Create Message Component
+    4.  Create utils.js to getError function

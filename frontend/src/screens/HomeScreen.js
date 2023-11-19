@@ -7,6 +7,9 @@ import logger from 'use-reducer-logger';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../components/Product';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import { getError } from '../util';
 
 const reducer = (state, action) => {
   // two parameter current state and action type
@@ -40,7 +43,7 @@ export default function HomeScreen() {
         const result = await axios.get('/api/products/');
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (error) {
-        dispatch({ type: 'FETCH_FAIL', payload: error.message });
+        dispatch({ type: 'FETCH_FAIL', payload: getError(error) });
       }
 
       // setProducts(result.data);  // FOR useState()
@@ -56,9 +59,9 @@ export default function HomeScreen() {
 
       <div className="products">
         {loading ? (
-          <div>Loading data....</div>
+          <LoadingBox />
         ) : error ? (
-          <div>{error}</div>
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <Row>
             {products.map((product) => (
