@@ -69,3 +69,12 @@
 15. Complete Add to Cart
     1.  Check exits item in the
     2.  Check count in stock in backend
+16. Create Cart Scrren
+    1.  Create 2 column for list and subtotal
+    2.  Display item list
+    3.  Crate Action column for inc dec and delte and for chekcout
+17. Complete Cart Screen
+    1.  Click hander for inc/dec item
+    2.  click hander for remove item
+    3.  click hander for checkout
+    4.  homescreen click handler for add to card and out of stock
