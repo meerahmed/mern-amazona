@@ -48,6 +48,9 @@ main {
 .img-large {
   width: 100%;
 }
+.img-thumbnel {
+  width: 80px;
+}
 
 .rating span {
   color: #ffc000;
