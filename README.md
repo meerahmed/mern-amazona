@@ -61,3 +61,11 @@
     2.  Use spinner Component
     3.  Create Message Component
     4.  Create utils.js to getError function
+14. Implement Add to Cart (React Context)
+    1. Create React Context (https://react.dev/learn/passing-data-deeply-with-context)
+    2. Define Reducer
+    3. Create store provider
+    4. implement add to cart button click handler
+15. Complete Add to Cart
+    1.  Check exits item in the
+    2.  Check count in stock in backend

@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Rating from './Rating';
 function Product(props) {
   const { product } = props;
+  const addToCartHandler = () => {};
   return (
     <Card>
       <Link to={`/product/${product.slug}`}>
@@ -15,7 +16,7 @@ function Product(props) {
         </Link>
         <Rating rating={product.rating} numReviews={product.numReviews} />
         <Card.Text>${product.price}</Card.Text>
-        <Button>Add to cart</Button>
+        <Button onClick={addToCartHandler}>Add to cart</Button>
       </Card.Body>
     </Card>
   );
