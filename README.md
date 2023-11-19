@@ -55,3 +55,4 @@
 12. Create Product Details Screen
     1.  Fetch product from backend with ths slug
     2.  Create 3 column for image , info, action
+    3.  using react-helmet-async for dynamic browser title

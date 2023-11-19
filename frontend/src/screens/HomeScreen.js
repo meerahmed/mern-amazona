@@ -1,4 +1,5 @@
 import { useEffect, useReducer, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
 import logger from 'use-reducer-logger';
 // import data from '../data';
@@ -48,6 +49,9 @@ export default function HomeScreen() {
   }, []);
   return (
     <div>
+      <Helmet>
+        <title>Amazona</title>
+      </Helmet>
       <h1>Featured Product</h1>
 
       <div className="products">
