@@ -78,3 +78,8 @@
     2.  click hander for remove item
     3.  click hander for checkout
     4.  homescreen click handler for add to card and out of stock
+18. Create Sign in Screen
+    1.  create sign in form
+    2.  add email and password
+    3.  add sign in button
+    4.  Set Urlredirect using new URLSearchParams(search).get('redirect');

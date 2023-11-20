@@ -55,3 +55,8 @@ main {
 .rating span {
   color: #ffc000;
 }
+
+.small-container {
+  align-items: center;
+  max-width: 600px;
+}
