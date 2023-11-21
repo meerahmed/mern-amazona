@@ -83,3 +83,24 @@
     2.  add email and password
     3.  add sign in button
     4.  Set Urlredirect using new URLSearchParams(search).get('redirect');
+19. Connect to MongoDB Database
+    1.  Create atlas mongodb database
+    2.  install local mongodb database
+    3.  npm install mongoose (npm install mongoose --save)
+    4.  connect to mongodb database (https://www.mongodb.com/products/tools/compass)
+        1. local mongoo url: mongodb://localhost:27017/
+    5.  amozona45 and meercse45
+    6.  npm install dotenv for enviroment variabe
+    7.  mongodb+srv://meercse45:amazona45@cluster0.mjwue4y.mongodb.net/amazona?retryWrites=true&w=majority
+
+# Mongodb Server and compass download
+
+    1.  https://www.mongodb.com/try/download/community
+    2.  https://www.mongodb.com/products/tools/compass
+
+20. Seed Sample data
+    1.  Create Product model
+    2.  Create User Model
+    3.  Create Seed route
+    4.  Use Route in server.js
+    5.  Seed Sample product
