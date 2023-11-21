@@ -21,7 +21,7 @@ productRouter.get('/:id', async (req, res) => {
   if (product) {
     res.send(product);
   } else {
-    res.status(404).send({ message: 'Product not found ! Please Try new' });
+    res.status(401).send({ message: 'Product not found ! Please Try new' });
   }
 });
 

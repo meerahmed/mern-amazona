@@ -109,3 +109,8 @@
     2.  Seed Sample Users
     3.  Create User Routes
     4.  Npm install bcryptjs for hasing password
+22. Create Signin Backend API
+    1. create signin api (install npm i express-async-hander for asynchHander error handler in server.js)
+    2. npm install jsonwebtoken (use jwt.sign(user,secretkey,expiretime))
+    3. define generateToken
+    4. Install ARC (Advanced REST client) in Chrome for rest api test
