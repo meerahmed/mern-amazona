@@ -42,6 +42,7 @@ app.use('/api/products', productRouter);
 // });
 // end custom router in server js
 // read port from process or 5000
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Serve is running at http://localhost:${port}`);

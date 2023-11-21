@@ -104,3 +104,8 @@
     3.  Create Seed route
     4.  Use Route in server.js
     5.  Seed Sample product
+21. Seed Sample User
+    1.  Create User Model
+    2.  Seed Sample Users
+    3.  Create User Routes
+    4.  Npm install bcryptjs for hasing password
