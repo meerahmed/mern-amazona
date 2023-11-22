@@ -19,6 +19,7 @@ const app = express();
 //the form data will be conver to json object
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+//the form data will be conver to json object
 
 // Start Router
 app.use('/api/seed', seedRouter);

@@ -114,3 +114,8 @@
     2. npm install jsonwebtoken (use jwt.sign(user,secretkey,expiretime))
     3. define generateToken
     4. Install ARC (Advanced REST client) in Chrome for rest api test
+23. Complete Sign In Action
+    1.  Handle Submit action
+    2.  Save token in store and local storage
+    3.  Show use name in header
+    4.  Install npm i react-toastify for toast message from react
