@@ -37,6 +37,7 @@ export default function SigninScreen() {
 
   useEffect(() => {
     if (userInfo) {
+      console.log('i am here');
       navigate(redirect);
     }
   }, [navigate, userInfo, redirect]);

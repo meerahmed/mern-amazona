@@ -9,6 +9,9 @@ const initialState = {
     cartItems: localStorage.getItem('cartItems')
       ? JSON.parse(localStorage.getItem('cartItems'))
       : [],
+    shippingAddress: localStorage.getItem('shippingAddress')
+      ? JSON.parse(localStorage.getItem('shippingAddress'))
+      : {},
   },
 };
 
@@ -29,17 +32,35 @@ const reducer = (state, action) => {
     case 'REMOVE_CART_ITEM': {
       const removeItem = action.payload;
       const cartItems = state.cart.cartItems.filter(
-        (item) => item._id != removeItem._id
+        (item) => item._id !== removeItem._id
       );
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
+    }
+    case 'CLEAR_CART': {
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
     }
     case 'USER_SIGNIN': {
       return { ...state, userInfo: action.payload };
     }
     case 'USER_SIGNOUT': {
-      return { ...state, userInfo: null };
+      return {
+        ...state,
+        userInfo: null,
+        cart: {
+          ...state.cart,
+          shippingAddress: {},
+        },
+      };
     }
+    case 'SAVE_SHIPPING_ADDRESS':
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          shippingAddress: action.payload,
+        },
+      };
     default:
       return state;
   }

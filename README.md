@@ -119,3 +119,8 @@
     2.  Save token in store and local storage
     3.  Show use name in header
     4.  Install npm i react-toastify for toast message from react
+24. Create Shipping Screen
+    1.  Create a from for shipping information
+    2.  Handle Save Information of shipping
+    3.  add checkout wizerd bar
+    4.  Clear Cart After sign out
