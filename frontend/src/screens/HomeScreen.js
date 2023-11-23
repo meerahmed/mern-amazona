@@ -1,7 +1,7 @@
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer } from 'react';
 import { Helmet } from 'react-helmet-async';
 import axios from 'axios';
-import logger from 'use-reducer-logger';
+// import logger from 'use-reducer-logger';
 // import data from '../data';
 
 import Row from 'react-bootstrap/Row';
@@ -16,20 +16,16 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
-      break;
     case 'FETCH_SUCCESS':
       return { ...state, loading: false, products: action.payload };
-      break;
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
     default:
       return state;
-      break;
   }
 };
 export default function HomeScreen() {
-  // const [products, setProducts] = useState([]);
-  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
+  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
     loading: true,
     products: [],
     error: '',

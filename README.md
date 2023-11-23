@@ -124,3 +124,7 @@
     2.  Handle Save Information of shipping
     3.  add checkout wizerd bar
     4.  Clear Cart After sign out
+25. Create sign up Screen
+    1. Create input form for sign up
+    2. Handle Submit
+    3. Create backend api
