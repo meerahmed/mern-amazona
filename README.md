@@ -128,3 +128,6 @@
     1. Create input form for sign up
     2. Handle Submit
     3. Create backend api
+26. Implement Select payment method screen
+    1.  Create input forms
+    2.  Handle submit
