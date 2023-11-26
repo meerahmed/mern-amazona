@@ -18,8 +18,23 @@ orderRouter.post(
       user: req.user._id,
     });
     const order = await newOrder.save();
-    console.log(order);
+
     res.status(200).send({ message: 'New Order Created', order });
+  })
+);
+
+orderRouter.get(
+  '/:id',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const orderData = await Order.findById(req.params.id);
+    if (orderData) {
+      res
+        .status(200)
+        .send({ message: 'Order found Successfully', order: orderData });
+    } else {
+      res.status(401).send({ message: 'Order not found!' });
+    }
   })
 );
 export default orderRouter;
