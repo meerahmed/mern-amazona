@@ -24,7 +24,7 @@ export default function PaymentMethodScreen() {
       type: 'PAYMENT_METHOD_ADD',
       payload: paymentMethodName,
     });
-    localStorage.setItem('paymentMethod', paymentMethodName);
+    localStorage.setItem('paymentMethod', JSON.stringify(paymentMethodName));
     navigate('/placeorder');
   };
 
