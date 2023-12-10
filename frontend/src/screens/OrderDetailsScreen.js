@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useReducer } from 'react';
+import { usePayPalScriptReducer, PayPalButtons } from '@paypal/react-paypal-js';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Store } from '../Store';
@@ -12,7 +13,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-const reducer = (action, state) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
       return { ...state, loading: true, err: '', order: {} };
@@ -20,22 +21,75 @@ const reducer = (action, state) => {
       return { ...state, loading: false, err: '', order: action.payload };
     case 'FETCH_FAIL':
       return { ...state, loading: false, err: action.error, order: {} };
+
+    case 'PAY_REQUEST':
+      return { ...state, loadingPay: true };
+    case 'PAY_SUCCESS':
+      return { ...state, loadingPay: false, successPay: true };
+    case 'PAY_FAIL':
+      return { ...state, loadingPay: false };
+    case 'PAY_RESET':
+      return { ...state, loadingPay: false, successPay: false };
+
     default:
       return state;
   }
 };
 export default function OrderDetailsScreen() {
-  const [{ loading, err, order }, dispatch] = useReducer(reducer, {
-    loading: true,
-    err: '',
-    order: {},
-  });
   const { state } = useContext(Store);
   const { userInfo } = state;
   const navigate = useNavigate();
   const search = useParams();
   const { id: orderId } = search;
 
+  const [{ loading, error, order, successPay, loadingPay }, dispatch] =
+    useReducer(reducer, {
+      loading: true,
+      order: {},
+      error: '',
+      successPay: false,
+      loadingPay: false,
+    });
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+
+  function createOrder(data, actions) {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: { value: order.totalPrice },
+          },
+        ],
+      })
+      .then((orderID) => {
+        return orderID;
+      });
+  }
+
+  function onApprove(data, actions) {
+    return actions.order.capture().then(async function (details) {
+      try {
+        dispatch({ type: 'PAY_REQUEST' });
+        const { data } = await axios.put(
+          `/api/orders/${order._id}/pay`,
+          details,
+          {
+            headers: { authorization: `Bearer ${userInfo.token}` },
+          }
+        );
+        console.log('order update' + data);
+        dispatch({ type: 'PAY_SUCCESS', payload: data });
+        toast.success('Order is paid');
+      } catch (err) {
+        dispatch({ type: 'PAY_FAIL', payload: getError(err) });
+        toast.error(getError(err));
+      }
+    });
+  }
+
+  function onError(err) {
+    toast.error(getError(err));
+  }
   useEffect(() => {
     const fetchOrder = async () => {
       try {
@@ -43,26 +97,47 @@ export default function OrderDetailsScreen() {
         const { data } = await axios.get(`/api/orders/${orderId}`, {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
+        console.log(data);
         dispatch({
           type: 'FETCH_SUCCESS',
-          loading: false,
-          payload: data.order,
+          payload: data,
         });
       } catch (error) {
         toast.error(getError(error));
       }
     };
+
     if (!userInfo) {
       navigate('/login');
     }
-
-    if (!order._id || (order._id && order._id) !== orderId) {
+    console.log(successPay + ' success pay');
+    if (!order._id || successPay || (order._id && order._id !== orderId)) {
+      console.log(successPay + 'in if block');
       fetchOrder();
+
+      if (successPay) {
+        dispatch({ type: 'PAY_RESET' });
+      }
+    } else {
+      const loadPaypalScript = async () => {
+        const { data: clientId } = await axios.get('/api/keys/paypal', {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        });
+        paypalDispatch({
+          type: 'resetOptions',
+          value: {
+            'client-id': clientId,
+            currency: 'USD',
+          },
+        });
+        paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
+      };
+      loadPaypalScript();
     }
-  }, [navigate, userInfo, order, orderId]);
+  }, [order, userInfo, orderId, navigate, paypalDispatch, successPay]);
   return loading ? (
     <LoadingBox></LoadingBox>
-  ) : err ? (
+  ) : error ? (
     <MessageBox variant="danger">err</MessageBox>
   ) : (
     <div>
@@ -162,6 +237,22 @@ export default function OrderDetailsScreen() {
                     <Col>$ {order.totalPrice}</Col>
                   </Row>
                 </ListGroup.Item>
+                {!order.isPaid && (
+                  <ListGroup.Item>
+                    {isPending ? (
+                      <LoadingBox />
+                    ) : (
+                      <div>
+                        <PayPalButtons
+                          createOrder={createOrder}
+                          onApprove={onApprove}
+                          onError={onError}
+                        ></PayPalButtons>
+                      </div>
+                    )}
+                    {loadingPay && <LoadingBox></LoadingBox>}
+                  </ListGroup.Item>
+                )}
               </ListGroup>
             </Card.Body>
           </Card>

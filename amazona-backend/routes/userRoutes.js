@@ -24,7 +24,12 @@ userRoute.post(
         res.status(401).send({ message: 'Invalid User Email and password!' });
       }
     } else {
-      res.status(401).send({ message: 'Invalid User Email and password!' });
+      res
+        .status(401)
+        .send({
+          message: 'Invalid User Email and password!',
+          data: req.body.email,
+        });
     }
   })
 );
