@@ -156,3 +156,8 @@
 
     paypal account = paypal45 as pp and email is meercse
     sandbox account = sb-z1j47r28046769@personal.example.com ap qNe$1<c8
+
+31. Display order history
+    1.  Create order Screen
+    2.  Create order history api
+    3.  use api in frontend

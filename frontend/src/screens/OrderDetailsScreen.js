@@ -97,24 +97,22 @@ export default function OrderDetailsScreen() {
         const { data } = await axios.get(`/api/orders/${orderId}`, {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
-        console.log(data);
+        // console.log(data);
         dispatch({
           type: 'FETCH_SUCCESS',
           payload: data,
         });
-      } catch (error) {
-        toast.error(getError(error));
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+        toast.error(getError(err));
       }
     };
 
     if (!userInfo) {
       navigate('/login');
     }
-    console.log(successPay + ' success pay');
     if (!order._id || successPay || (order._id && order._id !== orderId)) {
-      console.log(successPay + 'in if block');
       fetchOrder();
-
       if (successPay) {
         dispatch({ type: 'PAY_RESET' });
       }
